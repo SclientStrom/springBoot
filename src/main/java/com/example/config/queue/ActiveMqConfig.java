@@ -3,6 +3,9 @@ package com.example.config.queue;
 import org.apache.activemq.command.ActiveMQQueue;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.jms.core.JmsMessagingTemplate;
+import org.springframework.jms.core.JmsTemplate;
 
 import javax.jms.Queue;
 
@@ -10,8 +13,9 @@ import javax.jms.Queue;
  * Created by ThinkPad on 2017/7/14.
  */
 @Configuration
+@PropertySource(value = "classpath:activemq.properties")
 public class ActiveMqConfig {
-    @Bean(name = "queue1")
+    @Bean(name = "queue1" )
     public Queue test2queue(){
         return new ActiveMQQueue("queue1");
     }
