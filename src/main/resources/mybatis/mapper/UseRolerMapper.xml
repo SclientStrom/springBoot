@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mapper.UserRoleMapper">
+
+    <resultMap id="userMap" type="com.example.mapper.entity.User">
+        <id property="uid" column="uid"/>
+        <result property="username" column="username"/>
+        <result property="password" column="password"/>
+        <collection property="roles" ofType="roleMap" column="uid" select="findRole"></collection>
+    </resultMap>
+
+    <resultMap id="roleMap" type="com.example.mapper.entity.Role">
+        <id property="rid" column="rid"/>
+        <result property="rname" column="rname"/>
+        <collection property="modules" ofType="com.example.mapper.entity.Module" column="rid" select="findModule">
+        </collection>
+    </resultMap>
+
+      <select id="findByUserName" parameterType="java.lang.String" resultMap="userMap">
+          SELECT  * from USER WHERE username=#{username}
+      </select>
+
+    <select id="findRole" parameterType="java.lang.Integer" resultMap="roleMap">
+        SELECT r.* from Role r LEFT  JOIN  user_role ur on ur.rid =r.rid where ur.uid=#{uid}
+    </select>
+
+    <select id="findModule" parameterType="java.lang.Integer" resultType="com.example.mapper.entity.Module">
+        SELECT m.* from module m LEFT  JOIN  module_role mr on mr.mid =m.mid where mr.rid=#{rid}
+    </select>
+
+</mapper>

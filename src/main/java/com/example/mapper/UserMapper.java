@@ -8,4 +8,5 @@ import com.example.domain.User;
 public interface UserMapper {
 
     public User getUserById(Integer id);
+
 }
