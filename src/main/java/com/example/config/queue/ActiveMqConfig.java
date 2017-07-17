@@ -1,12 +1,16 @@
 package com.example.config.queue;
 
+import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.command.ActiveMQQueue;
+import org.apache.activemq.network.jms.JmsMesageConvertor;
+import org.apache.activemq.network.jms.SimpleJmsMessageConvertor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.jms.core.JmsMessagingTemplate;
 import org.springframework.jms.core.JmsTemplate;
 
+import javax.jms.Connection;
 import javax.jms.Queue;
 
 /**

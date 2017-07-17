@@ -8,9 +8,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class Consumer {
-    @JmsListener(destination = "queue1")
+
+    @JmsListener(destination = "queue1" )
     public void receiveQueue(String text){
-        System.out.println("this is queue1"+text);
+        System.out.println("this is queue1 "+text);
     }
 
     @JmsListener(destination = "queue2")
